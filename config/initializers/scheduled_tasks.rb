@@ -34,8 +34,10 @@ scheduler.every("1m") do
         
         elsif source.nil?
           
-          resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
-          resource.post :status => '@' + u['author'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
+          if u['author'] != 'twelephoneapp'
+            resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
+            resource.post :status => '@' + u['author'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
+          end
           
         elsif destination.nil?
           

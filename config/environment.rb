@@ -9,7 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   
   config.gem 'twitter-auth', :lib => 'twitter_auth'
-  config.gem 'oauth', :version => '0.3.4'
+  config.gem 'oauth', :version => '0.3.6'
   config.gem 'haml', :version => '>= 2.0.6'
   config.gem 'rufus-scheduler'
   

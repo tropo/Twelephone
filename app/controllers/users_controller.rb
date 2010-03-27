@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   def tweetcall
     refnumber = 1 + rand(1000)
-    message = "twelephone @#{params[:twele][:target]} ref:#{refnumber.to_s}"
+    message = "#twelephone @#{params[:twele][:target]} ref:#{refnumber.to_s}"
     @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
     
     target = User.find(:first, :conditions => ['login = ?', params[:twele][:target]])

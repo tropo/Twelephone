@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100326221745) do
+ActiveRecord::Schema.define(:version => 20100328044201) do
 
   create_table "calls", :force => true do |t|
     t.integer  "timestamp"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20100326221745) do
     t.string   "target"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "twitterid"
   end
 
   create_table "listeners", :force => true do |t|

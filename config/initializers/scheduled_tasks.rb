@@ -61,9 +61,12 @@ require 'rubygems'
 require 'rest_client'
 require 'tweetstream'
 
+
 # Thread.new do
-# TweetStream::Client.new('twelephoneapp','dvtdvt').track('#twelephone') do |status|
-TweetStream::Daemon.new('twelephoneapp','dvtdvt','tracker').track('#twelephone') do |status|  
+# spawn do
+TweetStream::Client.new('twelephoneapp','dvtdvt').track('#twelephone') do |status|
+# TweetStream::Daemon.new('twelephoneapp','dvtdvt','tracker').track('#twelephone') do |status|  
+# TweetStream::Daemon.new('twelephoneapp','dvtdvt').track('#twelephone') do |status|  
   # puts "#{status.text}"
   # puts "#{status.id}"
   # puts "#{status.user.screen_name}"
@@ -101,6 +104,8 @@ TweetStream::Daemon.new('twelephoneapp','dvtdvt','tracker').track('#twelephone')
     end
     
   # end
-# end
-  
 end
+  
+# end
+
+

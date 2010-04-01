@@ -10,8 +10,8 @@ Rails::Initializer.run do |config|
   
   config.gem 'twitter-auth', :lib => 'twitter_auth'
   config.gem 'oauth', :version => '>=0.3.4'
-  config.gem 'haml', :version => '>= 2.0.6'
-  config.gem 'rufus-scheduler'
+  # config.gem 'haml', :version => '>= 2.0.6'
+  # config.gem 'rufus-scheduler'
   config.gem 'tweetstream'
   
   

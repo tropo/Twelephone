@@ -15,6 +15,9 @@ scheduler.every("1m") do
   if result['resultCount'] > 0
     
     result['results'].each do |u|
+      
+      if u['title'].index("#twelephone")
+        
       calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['timestamp']])
       
       if !calls
@@ -35,13 +38,13 @@ scheduler.every("1m") do
         elsif source.nil?
           
           if u['author'] != 'twelephoneapp'
-            resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'secret'
+            resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
             resource.post :status => '@' + u['author'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
           end
           
         elsif destination.nil?
           
-          resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'secret'
+          resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
           resource.post :status => '@' + target[0].to_s + ': @' + u['author'] + ' is trying to give you a twelephone call. Register at http://twelephone.com!', :content_type => 'application/xml'
           
           
@@ -49,6 +52,7 @@ scheduler.every("1m") do
         
       end
     end
+  end
 
   end 
  
@@ -63,9 +67,9 @@ end
 # require 'tweetstream'
 # 
 # # Thread.new do
-# TweetStream::Client.new('twelephoneapp','secret').track('#twelephone') do |status|
-# # TweetStream::Daemon.new('twelephoneapp','secret','tracker').track('#twelephone') do |status|  
-# # TweetStream::Daemon.new('twelephoneapp','secret').track('#twelephone') do |status|  
+# TweetStream::Client.new('twelephoneapp','dvtdvt').track('#twelephone') do |status|
+# # TweetStream::Daemon.new('twelephoneapp','dvtdvt','tracker').track('#twelephone') do |status|  
+# # TweetStream::Daemon.new('twelephoneapp','dvtdvt').track('#twelephone') do |status|  
 #   # puts "#{status.text}"
 #   # puts "#{status.id}"
 #   # puts "#{status.user.screen_name}"
@@ -90,13 +94,13 @@ end
 #     elsif source.nil?
 #       
 #       if status.user.screen_name != 'twelephoneapp'
-#         resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'secret'
+#         resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
 #         resource.post :status => '@' + status.user.screen_name + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
 #       end
 #       
 #     elsif destination.nil?
 #       
-#       resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'secret'
+#       resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
 #       resource.post :status => '@' + target[0].to_s + ': @' + status.user.screen_name + ' is trying to give you a twelephone call. Register at http://twelephone.com!', :content_type => 'application/xml'
 #       
 #       

@@ -29,8 +29,10 @@ scheduler.every("1m") do
         logit.target = target[0]
         logit.save
         
-        source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
-        destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
+        # source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
+        # destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
+        source = User.find(:first, :conditions => ['login ILIKE ?', u['author']]) rescue false
+        destination = User.find(:first, :conditions => ['login ILIKE ?', target[0]]) rescue false
         
         if source and destination
             dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone ) rescue '' 

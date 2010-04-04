@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     message = "#twelephone @#{params[:twele][:target]} ref:#{refnumber.to_s}"
     @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
     
-    target = User.find(:first, :conditions => ['login = ?', params[:twele][:target]])
+    target = User.find(:first, :conditions => ['login = ?', params[:twele][:target].downcase])
       
     render :update do |page| 
       if target

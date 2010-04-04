@@ -29,15 +29,15 @@ scheduler.every("1m") do
         logit.target = target[0]
         logit.save
         
-        source = User.find(:first, :conditions => ['login = ?', u['author']]) rescue false
-        destination = User.find(:first, :conditions => ['login = ?', target[0]]) rescue false
+        source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
+        destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
         
         if source and destination
             dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone ) rescue '' 
         
         elsif source.nil?
           
-          if u['author'] != 'twelephoneapp'
+          if u['author'].downcase != 'twelephoneapp'
             resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
             resource.post :status => '@' + u['author'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
           end

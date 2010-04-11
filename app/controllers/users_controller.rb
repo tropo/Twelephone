@@ -6,14 +6,19 @@ class UsersController < ApplicationController
   end
   
   def tweetcall
-    refnumber = 1 + rand(1000)
-    message = "#twelephone @#{params[:twele][:target]} ref:#{refnumber.to_s}"
-    @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
     
-    target = User.find(:first, :conditions => ['login = ?', params[:twele][:target].downcase])
-      
+    if current_user
+      refnumber = 1 + rand(1000)
+      message = "#twelephone @#{params[:twele][:target]} ref:#{refnumber.to_s}"
+      @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
+    
+      target = User.find(:first, :conditions => ['login = ?', params[:twele][:target].downcase])
+    end
+    
     render :update do |page| 
-      if target
+      if !current_user
+        page.replace_html 'results', 'Please login to place a twelephone call...'
+      elsif target
         page.replace_html 'results', 'Please wait while we initiate the calls...'
       else
         page.replace_html 'results', 'We just sent @' + params[:twele][:target] + ' a requst to signup for Twelephone...'

@@ -14,7 +14,7 @@ scheduler.every("30s") do
   res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
   result = JSON.parse(res)
   
-  if result['resultCount'] > 0
+  if result['results'] 
     
     result['results'].each do |u|
       

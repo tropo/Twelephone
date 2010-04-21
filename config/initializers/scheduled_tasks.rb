@@ -10,7 +10,7 @@ scheduler = Rufus::Scheduler.start_new
 scheduler.every("30s") do
 
 
-  res = RestClient.get URI.encode('http://itpints.com/api/search?q=#twelephone') rescue ''  
+  res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
   result = JSON.parse(res)
   
   if result['resultCount'] > 0

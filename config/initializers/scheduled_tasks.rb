@@ -20,7 +20,7 @@ scheduler.every("30s") do
       
       if !u['text'].nil? and u['text'].index("#twelephone") 
         
-      calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['created_at']]) 
+      calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['id']]) 
       
       if !calls
         # if !u['to_user'].nil?
@@ -30,7 +30,7 @@ scheduler.every("30s") do
         # end
         
         logit = Call.new
-        logit.timestamp = u['created_at']
+        logit.timestamp = u['id']
         logit.author = u['from_user']
         logit.target = target[0]
         logit.save

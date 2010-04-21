@@ -20,7 +20,7 @@ scheduler.every("30s") do
       
       if !u['text'].nil? and u['text'].index("#twelephone") 
         
-      calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['id']]) 
+      calls ||= Call.find(:first, :conditions => ['twitterids = ?', u['id']]) 
       
       if !calls
         # if !u['to_user'].nil?
@@ -30,7 +30,7 @@ scheduler.every("30s") do
         # end
         
         logit = Call.new
-        logit.timestamp = u['id']
+        logit.twitterids = u['id']
         logit.author = u['from_user']
         logit.target = target[0]
         logit.save
@@ -41,7 +41,7 @@ scheduler.every("30s") do
         destination = User.find(:first, :conditions => ['login ILIKE ?', target[0]]) rescue false
         
         if source and destination
-            dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone ) rescue '' 
+            dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone + '?apikey=ba6a5304-905a-4938-811c-351020b8fdf6' ) rescue '' 
         
         elsif source.nil?
           

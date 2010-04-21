@@ -10,29 +10,34 @@ scheduler = Rufus::Scheduler.start_new
 scheduler.every("30s") do
 
 
-  res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
+  # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
+  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
   result = JSON.parse(res)
   
   if result['resultCount'] > 0
     
     result['results'].each do |u|
       
-      if u['title'].index("#twelephone")
+      if !u['text'].nil? and u['text'].index("#twelephone") 
         
-      calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['timestamp']])
+      calls ||= Call.find(:first, :conditions => ['timestamp = ?', u['created_at']]) 
       
       if !calls
-        target = u['title'].scan(/@([A-Za-z0-9_]+)/)
-
+        # if !u['to_user'].nil?
+        #   target = u['to_user']
+        # else
+          target = u['text'].scan(/@([A-Za-z0-9_]+)/) rescue ''
+        # end
+        
         logit = Call.new
-        logit.timestamp = u['timestamp']
-        logit.author = u['author']
+        logit.timestamp = u['created_at']
+        logit.author = u['from_user']
         logit.target = target[0]
         logit.save
         
         # source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
         # destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
-        source = User.find(:first, :conditions => ['login ILIKE ?', u['author']]) rescue false
+        source = User.find(:first, :conditions => ['login ILIKE ?', u['from_user']]) rescue false
         destination = User.find(:first, :conditions => ['login ILIKE ?', target[0]]) rescue false
         
         if source and destination
@@ -40,15 +45,15 @@ scheduler.every("30s") do
         
         elsif source.nil?
           
-          if u['author'].downcase != 'twelephoneapp'
+          if u['from_user'].downcase != 'twelephoneapp'
             resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
-            resource.post :status => '@' + u['author'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
+            resource.post :status => '@' + u['from_user'] + ': Before giving someone a twelephone call, you must register at http://twelephone.com!', :content_type => 'application/xml'
           end
           
         elsif destination.nil?
           
           resource = RestClient::Resource.new 'http://twitter.com/statuses/update.xml', :user => 'twelephoneapp', :password => 'dvtdvt'
-          resource.post :status => '@' + target[0].to_s + ': @' + u['author'] + ' is trying to give you a twelephone call. Register at http://twelephone.com!', :content_type => 'application/xml'
+          resource.post :status => '@' + target[0].to_s + ': @' + u['from_user'] + ' is trying to give you a twelephone call. Register at http://twelephone.com!', :content_type => 'application/xml'
           
           
         end

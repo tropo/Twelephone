@@ -20,7 +20,7 @@ scheduler.every("30s") do
       
       if !u['text'].nil? and u['text'].index("#twelephone") 
         
-      calls ||= Call.find(:first, :conditions => ['twitterids ILIKE ?', u['id']]) rescue 'true'
+      calls ||= Call.find(:first, :conditions => ['twitterids = ?', u['id']]) 
       
       if !calls
         # if !u['to_user'].nil?

@@ -17,16 +17,19 @@ scheduler.every("1m") do
   require 'net/http' 
   require 'uri'
 
-  uri = URI.parse( "http://search.twitter.com/search.json" ); params = {'q'=>'twelephone'}
-
-  http = Net::HTTP.new(uri.host, uri.port) 
-  request = Net::HTTP::Get.new(uri.path) 
-  request.set_form_data( params )
-
-  # instantiate a new Request object
-  request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
-
-  res = http.request(request).to_s
+  # uri = URI.parse( "http://search.twitter.com/search.json" ); params = {'q'=>'twelephone'}
+  # 
+  # http = Net::HTTP.new(uri.host, uri.port) 
+  # request = Net::HTTP::Get.new(uri.path) 
+  # request.set_form_data( params )
+  # 
+  # # instantiate a new Request object
+  # request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
+  # 
+  # res = http.request(request).to_s
+  
+  resfetch = Net::HTTP.get(URI.parse('http://search.twitter.com/search.json?q=twelephone'))
+  res = resfetch
   
   
   # puts res.to_s

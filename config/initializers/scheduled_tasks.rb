@@ -11,7 +11,7 @@ scheduler.every("1m") do
 
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
-  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=#twelephone') #rescue nil
+  res = RestClient.post URI.encode('http://search.twitter.com/search.json?q=#twelephone') #rescue nil
   # puts res.to_s
   # if res 
     result = JSON.parse(res)

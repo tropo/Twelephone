@@ -11,8 +11,8 @@ Rails::Initializer.run do |config|
   config.gem 'twitter-auth', :lib => 'twitter_auth'
   config.gem 'oauth', :version => '>=0.3.4'
   # config.gem 'haml', :version => '>= 2.0.6'
-  # config.gem 'rufus-scheduler'
-  config.gem 'tweetstream'
+  config.gem 'rufus-scheduler'
+  # config.gem 'tweetstream'
   
   
   # Settings in config/environments/* take precedence over those specified here.

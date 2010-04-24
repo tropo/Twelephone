@@ -14,9 +14,9 @@ scheduler.every("30s") do
   res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
   result = JSON.parse(res) rescue ''
   
-  if result['results'] 
+  if !result['results']['created_at'].nil?
     
-    result['results'].each do |u|
+    result['results'].each do |u| 
       
       if !u['text'].nil? and u['text'].index("#twelephone") 
         

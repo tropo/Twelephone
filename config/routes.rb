@@ -46,6 +46,9 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # map.connect ':id', :controller => "skypes", :action => "call"
+
+  map.connect 'twitterpoll', :controller => "static", :action => "twitterpoll"
+
   map.connect ':id', :controller => "users", :action => "show"
 
 

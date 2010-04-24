@@ -6,8 +6,8 @@ require 'rufus/scheduler'
 
 scheduler = Rufus::Scheduler.start_new
 
-# scheduler.every("1m") do
-scheduler.every("30s") do
+scheduler.every("1m") do
+# scheduler.every("30s") do
 
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  

@@ -26,7 +26,7 @@ scheduler.every("1m") do
   # instantiate a new Request object
   request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
 
-  res = http.request(request)
+  res = http.request(request).to_s
   
   
   # puts res.to_s

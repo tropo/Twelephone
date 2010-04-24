@@ -11,8 +11,23 @@ scheduler.every("1m") do
 
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
-  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') #rescue nil
+  # res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') #rescue nil
   # res = RestClient.post URI.encode('http://search.twitter.com/search.json'), :q =>'twelephone' #rescue nil
+  
+  require 'net/http' require 'uri'
+
+  uri = URI.parse( "http://search.twitter.com/search.json" ); params = {'q'=>'twelephone'}
+
+  http = Net::HTTP.new(uri.host, uri.port) 
+  request = Net::HTTP::Get.new(uri.path) 
+  request.set_form_data( params )
+
+  # instantiate a new Request object
+  request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
+
+  res = http.request(request)
+  
+  
   # puts res.to_s
   # if res 
     result = JSON.parse(res)

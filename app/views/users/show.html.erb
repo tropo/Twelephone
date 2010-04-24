@@ -1,4 +1,4 @@
-
+<% if @user %>
 <br>
 <%= profile_image(@user) %> 
 <br>
@@ -42,6 +42,10 @@ Phone: <%= @user.phone %>	<%= link_to_function('edit') do |page|
 
 Location: <%= @user.location %><br>
 Bio: <%= @user.description %><br>
+
+<% else %>
+<center><h1>User not found... <a href="/">Return</a></h1></center>
+<% end %>
 
 <div class='clearfix'></div>
 

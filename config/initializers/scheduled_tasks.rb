@@ -14,7 +14,7 @@ scheduler.every("30s") do
   res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
   result = JSON.parse(res)
   
-  if result['results'] 
+  # if result['results'] 
     
     result['results'].each do |u|
       
@@ -37,11 +37,12 @@ scheduler.every("30s") do
         
         # source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
         # destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
-        source = User.find(:first, :conditions => ['login ILIKE ?', u['from_user']]) rescue false
-        destination = User.find(:first, :conditions => ['login ILIKE ?', target[0]]) rescue false
+        source = User.find(:first, :conditions => ['login LIKE ?', '%' + u['from_user'] + '%']) rescue false
+        destination = User.find(:first, :conditions => ['login LIKE ?', '%' + target[0] + '%']) rescue false
         
         if source and destination
             dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone + '?apikey=ba6a5304-905a-4938-811c-351020b8fdf6' ) rescue '' 
+            puts URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone + '?apikey=ba6a5304-905a-4938-811c-351020b8fdf6' )
         
         elsif source.nil?
           
@@ -62,7 +63,7 @@ scheduler.every("30s") do
     end
   end
 
-  end 
+  # end 
  
 end 
 

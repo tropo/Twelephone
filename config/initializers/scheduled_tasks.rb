@@ -12,7 +12,7 @@ scheduler.every("30s") do
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
   res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
-  result = JSON.parse(res)
+  result = JSON.parse(res) rescue ''
   
   # if result['results'] 
     

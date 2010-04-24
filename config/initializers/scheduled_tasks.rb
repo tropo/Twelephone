@@ -11,8 +11,12 @@ scheduler.every("30s") do
 
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
-  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue ''  
-  result = JSON.parse(res) rescue ''
+  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue false
+  if res 
+    result = JSON.parse(res)
+  else
+    result = ''
+  end
   
   # if !result['results']['created_at'].nil?
     

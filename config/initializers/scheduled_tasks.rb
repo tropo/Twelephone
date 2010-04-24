@@ -11,22 +11,26 @@ scheduler.every("30s") do
 
 
   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
-  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue false
+  res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') rescue nil
+  # puts res.to_s
   if res 
     result = JSON.parse(res)
   else
     result = ''
   end
+  # puts result.to_s
   
   # if !result['results']['created_at'].nil?
     
     result['results'].each do |u| 
       
       if !u['text'].nil? and u['text'].index("#twelephone") 
+        # puts u['id']
         
-      calls ||= Call.find(:first, :conditions => ['twitterids = ?', u['id'].to_s]) 
-      
+      calls = Call.find(:first, :conditions => ['twitterids = ?', u['id'].to_s]) rescue false
+      # puts ">"
       if !calls
+        # puts "<"
         # if !u['to_user'].nil?
         #   target = u['to_user']
         # else
@@ -41,8 +45,8 @@ scheduler.every("30s") do
         
         # source = User.find(:first, :conditions => ['UPPER(login) = ?', u['author'].upcase]) rescue false
         # destination = User.find(:first, :conditions => ['UPPER(login) = ?', target[0].upcase]) rescue false
-        source = User.find(:first, :conditions => ['login LIKE ?', '%' + u['from_user'] + '%']) rescue false
-        destination = User.find(:first, :conditions => ['login LIKE ?', '%' + target[0] + '%']) rescue false
+        source = User.find(:first, :conditions => ['login LIKE ?', '%' + u['from_user'] + '%']) #rescue false
+        destination = User.find(:first, :conditions => ['login LIKE ?', '%' + target[0].to_s + '%']) #rescue false
         
         if source and destination
             dial = RestClient.get URI.encode('http://teleku.com/connect/' + source.phone + '/' + destination.phone + '?apikey=ba6a5304-905a-4938-811c-351020b8fdf6' ) rescue '' 

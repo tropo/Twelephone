@@ -6,32 +6,32 @@
 # 
 # scheduler = Rufus::Scheduler.start_new
 # 
-# scheduler.every("1m") do
-# # scheduler.every("30s") do
+# # scheduler.every("1m") do
+# scheduler.every("30s") do
 # 
 # 
 #   # res = RestClient.get URI.encode('http://itpints.com/api/search?q=twelephone') rescue ''  
-#   # res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') #rescue nil
+#   res = RestClient.get URI.encode('http://search.twitter.com/search.json?q=twelephone') #rescue nil
 #   # res = RestClient.post URI.encode('http://search.twitter.com/search.json'), :q =>'twelephone' #rescue nil
 #   
-#   require 'net/http' 
-#   require 'uri'
-#   # require 'open-uri'
-# 
-#   # uri = URI.parse( "http://search.twitter.com/search.json" ); params = {'q'=>'twelephone'}
+#   # require 'net/http' 
+#   # require 'uri'
+#   # # require 'open-uri'
 #   # 
-#   # http = Net::HTTP.new(uri.host, uri.port) 
-#   # request = Net::HTTP::Get.new(uri.path) 
-#   # request.set_form_data( params )
+#   # # uri = URI.parse( "http://search.twitter.com/search.json" ); params = {'q'=>'twelephone'}
+#   # # 
+#   # # http = Net::HTTP.new(uri.host, uri.port) 
+#   # # request = Net::HTTP::Get.new(uri.path) 
+#   # # request.set_form_data( params )
+#   # # 
+#   # # # instantiate a new Request object
+#   # # request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
+#   # # 
+#   # # res = http.request(request).to_s
 #   # 
-#   # # instantiate a new Request object
-#   # request = Net::HTTP::Get.new( uri.path+ '?' + request.body ) 
-#   # 
-#   # res = http.request(request).to_s
-#   
-#   resfetch = Net::HTTP.get(URI.parse('http://search.twitter.com/search.json?q=twelephone'))
-#   # res = open(resfetch)
-#   res = resfetch
+#   # resfetch = Net::HTTP.get(URI.parse('http://search.twitter.com/search.json?q=twelephone'))
+#   # # res = open(resfetch)
+#   # res = resfetch
 #   
 #   # puts res.to_s
 #   # if res 

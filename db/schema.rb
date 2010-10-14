@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100421234148) do
+ActiveRecord::Schema.define(:version => 20101014212252) do
 
   create_table "calls", :force => true do |t|
     t.integer  "timestamp"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20100421234148) do
     t.datetime "last_processed_at"
     t.integer  "last_processed_id",            :default => 1
     t.string   "phone"
+    t.string   "sip"
   end
 
 end

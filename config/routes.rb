@@ -49,8 +49,15 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'twitterpoll', :controller => "static", :action => "twitterpoll"
 
-  map.connect ':id', :controller => "users", :action => "show"
+  map.connect 'call/:id', :controller => "static", :action => "telephone"
+  map.connect 'dial', :controller => "static", :action => "telephone"
+  
+  map.connect 'update_phonoaddress', :controller => "static", :action => "update_phonoaddress"
+  
 
+  map.connect ':id', :controller => "users", :action => "show"
+ 
+  map.connect '/apps/spaz/AIR/UpdateDescriptor.:format', :controller => 'static', :action => 'twelephoneversion'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

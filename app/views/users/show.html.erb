@@ -21,6 +21,7 @@
 	
 	<div id="results"></div>
 </p>
+<%# link_to('test', nil, :onclick => "if(confirm('Call " + @user.login + "?')){popitup('/call/" + @user.login + "');}; return false;")%>	
 
 <% if @user.id == current_user.id %>
 Phone: <%= @user.phone %>	<%= link_to_function('edit') do |page|
@@ -49,5 +50,5 @@ Bio: <%= @user.description %><br>
 
 <div class='clearfix'></div>
 
-
+							
 

@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     
     if current_user
       refnumber = 1 + rand(1000)
-      message = "calling @#{params[:twele][:target]} using http://twelephone.com ref:#{refnumber.to_s}"
-      @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
+      # message = "calling @#{params[:twele][:target]} using http://twelephone.com ref:#{refnumber.to_s}"
+      # @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
     
       target = User.find(:first, :conditions => ['login = ?', params[:twele][:target].downcase])
     end
@@ -21,6 +21,9 @@ class UsersController < ApplicationController
       elsif target
         page.replace_html 'results', "<script>popitup('/call/" + params[:twele][:target] + "');</script>"
       else
+        message = "@#{params[:twele][:target]} @#{current_user.login} is trying to call you using http://twelephone.com but you're not registered."
+        @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  
+        
         page.replace_html 'results', 'We just sent @' + params[:twele][:target] + ' a requst to signup for Twelephone...'
       end
       page.visual_effect :highlight, 'results', :duration => 1

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       if !current_user
         page.replace_html 'results', 'Please login to place a twelephone call...'
       elsif target
-        page.replace_html 'results', "<script>popitup('/call/" + params[:twele][:target] + "');</script>"
+        page.replace_html 'results', "Check your browsers popup blocker... <script>popitup('/call/" + params[:twele][:target] + "');</script>"
       else
         message = "@#{params[:twele][:target]} @#{current_user.login} is trying to call you using http://twelephone.com but you're not registered."
         @tweet = current_user.twitter.post('/statuses/update.json', :status => message)  

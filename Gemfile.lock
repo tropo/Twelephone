@@ -1,0 +1,42 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (2.3.11)
+      actionpack (= 2.3.11)
+    actionpack (2.3.11)
+      activesupport (= 2.3.11)
+      rack (~> 1.1.0)
+    activerecord (2.3.11)
+      activesupport (= 2.3.11)
+    activeresource (2.3.11)
+      activesupport (= 2.3.11)
+    activesupport (2.3.11)
+    ezcrypto (0.7.2)
+    json (1.5.1)
+    mime-types (1.16)
+    mysql2 (0.2.7)
+    oauth (0.4.4)
+    rack (1.1.2)
+    rails (2.3.11)
+      actionmailer (= 2.3.11)
+      actionpack (= 2.3.11)
+      activerecord (= 2.3.11)
+      activeresource (= 2.3.11)
+      activesupport (= 2.3.11)
+      rake (>= 0.8.3)
+    rake (0.8.7)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
+    twitter-auth (0.1.22)
+      ezcrypto (>= 0.7.2)
+      oauth (>= 0.3.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  json
+  mysql2
+  rails (= 2.3.11)
+  rest-client
+  twitter-auth

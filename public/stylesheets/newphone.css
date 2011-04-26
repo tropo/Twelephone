@@ -1,0 +1,420 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body{
+	background:#efefef;
+	font-family: Arial, Helvetica, San-Serrif;
+	font-size:80%;
+	color: #333;
+}
+.clearfix{
+	clear:left;	
+}
+a{
+	text-decoration:none;
+}
+a:active, a, :focus{
+  outline: none;
+  -moz-outline-style: none;
+}
+
+/* FLASH SETTINGS BOX */
+.flash-hldr{
+	position:absolute;
+	background:#EAEAEA;
+	width:215px;
+	height:138px;
+	top:100px;
+	left:15px;
+	z-index: 1000;
+	visibility: hidden;
+	border:3px solid #DEDEDE;	
+}
+
+/* PHONE CLIENT STYLES */
+#phono{
+	width:200px;
+	margin:0 auto;
+	margin-top:50px;
+	background:#0066ac;
+	border:1px solid #015993;
+	border-radius:8px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	-webkit-box-shadow:1px 1px 3px #ccc;
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#0066ac),to(#015993));
+	background:-moz-linear-gradient(0% 90% 90deg, #0066ac, #015993);
+	-webkit-box-shadow:inset 0px 1px 2px #0a80ce, 1px 1px 3px #ccc;
+}
+a.callme{
+	color:#FFF;
+	line-height:40px;
+	font-weight: bold;
+	font-size:18px;
+	text-decoration: none;
+	text-align:center;
+	display:block;
+	text-shadow:0 -1px 1px #333; 
+}
+
+a.answer{
+	color:#FFF;
+	line-height:40px;
+	font-weight: bold;
+	font-size:18px;
+	text-decoration: none;
+	text-align:center;
+	display:block;
+	text-shadow:0 -1px 1px #333; 
+	display:none; 
+}
+a.reject{
+	color:#FFF;
+	line-height:40px;
+	font-weight: bold;
+	font-size:18px;
+	text-decoration: none;
+	text-align:center;
+	display:block;
+	text-shadow:0 -1px 1px #333; 
+	display:none; 
+}
+
+a.phono-ready{
+	background:url("/images/phone-icon-small.png") no-repeat 40px 12px;
+}
+a.hangup{
+	color:#FFF;
+	line-height:40px;
+	font-weight: bold;
+	font-size:18px;
+	text-decoration: none;
+	text-align:center;
+	text-shadow:0 -1px 1px #333;
+	background:url("/images/hangup-icon-small.png") no-repeat 40px 12px;
+	display:none; 
+}
+.digit-hldr{
+	margin:0 auto;
+	width:200px;
+	display:none;
+}
+.digit-hldr .headset-hldr{
+	/*background:#001042;*/
+	padding:5px 0;
+	color:#efefef;
+	text-align:center;
+	font-size:11px;
+}
+.digit-hldr .headset-enabled{
+	background: url("/images/headset-icon.png") no-repeat 20px 50%;
+}
+.digit-hldr .headset-hldr a.headset{
+	text-decoration:none;
+	padding-left:20px;
+	line-height:16px;
+	color:#fff;
+	background:url("/images/checkbox_no.png") no-repeat 0 0;
+}
+.digit-hldr .headset-hldr a.checked{
+	background:url("/images/checkbox_yes.png") no-repeat 0 0;
+}
+a.digit{
+	width:64px;
+	height:28px;
+	float:left;
+	margin:0;
+	padding:3px 0;
+	background:#001042 url("/images/phone-digit-up-blu.png") repeat-x top left;
+	color:#FFF;
+	text-align:center;
+	border:1px solid #004578;
+	text-shadow:0px -1px 1px #000235;
+}
+a.middle{
+	width:66px;
+}
+a.bottom-left{
+	border-radius:0 0 0 8px;
+	-webkit-border-radius:0 0 0 8px;
+	-moz-border-radius:0 0 0 8px;
+}
+a.bottom-right{
+	border-radius:0 0 8px 0;
+	-webkit-border-radius:0 0 8px 0;
+	-moz-border-radius:0 0 8px 0;
+}
+a.digit:hover{
+	background-position:0 -15px;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+}
+a.digit:active{
+	border:1px solid #007EDA;
+}
+a.digit span.number{
+	font-size:120%;	
+	font-weight:bold;
+}
+a.digit span.star{
+	font-size:180%;	
+	font-weight:bold;
+}
+a.digit span.abc{
+	font-size:65%;
+}
+.control-hldr{
+	margin:0 auto;
+	margin-top:3px;
+	width:300px;
+}
+.control-hldr a.control-btn{
+	width:75px;
+	height:38px;
+	float:left;
+	margin:2px 2px;
+	padding-top:7px;
+	color:#FFF;
+	text-align:center;
+	line-height:35px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.9);
+	font-size:100%;	
+	font-weight:bold;
+}
+.control-hldr a.logo-icon{
+	width:75px;
+	height:38px;
+	float:left;
+	margin:2px 2px;
+	padding-top:7px;
+	background:url("/images/voxeo-icon.png") no-repeat center center;
+}
+.control-hldr a.control-btn:hover{
+	background-position:0 -20px;
+}
+.control-hldr a.call:active{
+	border:1px solid #105217;
+}
+.control-hldr a.talk:active{
+	border:1px solid #1F59AB;
+}
+.control-hldr a.endCall:active{
+	border:1px solid #1F59AB;
+}
+.control-hldr .call{
+	background:#26A91D url("/images/phone-call-up-blu.png") repeat-x top left;
+	border:1px solid #95CC91;
+}
+.control-hldr .call span{
+	background:url("/images/call-icon.png") no-repeat top left;
+	padding-left:20px;
+}
+.control-hldr .endCall{
+	background:#CA2A28 url("/images/phone-endcall-up-blu.png") repeat-x top left;
+	border:1px solid #DE7A7C;
+}
+.control-hldr .endCall span{
+	background:url("/images/hangup-icon.png") no-repeat center left;
+	padding-left:23px;
+}
+.control-hldr .talk{
+	background:#2C79E5 url("/images/phone-talk-up-blu.png") repeat-x top left;
+	border:1px solid #84AAED;
+}
+.control-hldr .talk span{
+/*	background:url("/images/mic-icon.png") no-repeat center left;*/
+	padding-left:20px;
+}
+a.dialButton{
+	background:#26A91D url("/images/call-icon.png") no-repeat top left;
+	padding-left:20px;
+	border:1px solid #95CC91;
+}
+
+/* FLASH SETTINGS BOX */
+.flash-hldr{
+	position:absolute;
+	background:#EAEAEA;
+	width:215px;
+	height:138px;
+	top:100px;
+	left:15px;
+	z-index: 1000;
+	visibility: hidden;
+	border:3px solid #DEDEDE;	
+}
+
+/* DISABLED OVERLAYS */
+.black_overlay{
+	display: block;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+
+/* CHAT CLIENT STYLES */
+#chat{
+	background: #004A7D url("/images/phone-background-blu.png") repeat-x top left;
+	border:1px solid #0C0D3B;
+	padding-bottom:5px;
+	border-top:none;
+	height:321px;
+}
+.chat-box{
+	background:#D7E8F2;
+	height:287px;
+	overflow:auto;
+	font-size:85%;
+}
+.chat-txt{
+	position:relative;
+	background:#FFF url("/images/chat-txt-bg.png") repeat-x top left;
+	height:38px;
+	border-top:1px solid #000;
+}
+a.send-btn{
+	float:right;
+	width:50px;
+	height:38px;
+	background:#001042 url("/images/phone-digit-up-blu.png") repeat-x top left;
+	line-height:38px;
+	color:#FFF;
+	text-align:center;
+	text-shadow:1px 1px 1px #000235;
+	font-size:80%;
+	font-weight:bold;
+	border-left:1px solid #0C0D3B;
+}
+textarea.chatInput{
+	position:absolute;
+	top:0;
+	left:0;
+	width:197px;
+	height:37px;
+	border:none;
+	background: none;
+	font-family: Helvetica;
+	font-size:12px;
+	color:#333;
+}
+.chatEntry{
+	-moz-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow:1px 1px 1px rgba(0, 0, 0, 0.1);
+	margin:5px;
+}
+.inbound{
+	border:1px solid #004B7E;
+}
+.outbound{
+	border:1px solid #333;
+}
+.chatEntry .from{
+	font-size:11px;
+	color:#FFF;
+	padding:3px 5px;
+	/*text-shadow:1px 1px 1px #000;*/
+}
+.fromInbound{
+	background:#0069B2 url("/images/chat-inbound-bg.png") repeat-x bottom left;
+}
+.timeStamp{
+	float:right;
+	font-size:11px;
+	color:#EBEBEB;
+}
+.fromOutbound{
+	background:#7D7D7D url("/images/chat-outbound-bg.png") repeat-x bottom left;
+}
+.chatEntry .body{
+	font-size:11px;
+	color:#333;
+	padding:3px 5px;
+	background:#FFF;
+}
+
+#dialform input:focus, select:focus, textarea:focus {background: none repeat scroll 0 0 #FFFF99; line-height:15px; font-size: 15px;}
+#dialform input, select, textarea {line-height:15px; font-size: 15px; }
+
+#dialform button, input{
+	padding:5px 10px;
+	color:#666666;
+	background-color:#F7F7F7;
+	border:1px solid #CCCCCC;
+	}
+	
+a.short_button {
+	width:75px;
+	height:38px;
+	float:left;
+	margin:2px 2px;
+	padding-top:7px;
+/*	background:#001042 url("/images/phone-digit-up-blu.png") repeat-x top left;
+*/	color:#FFF;
+	text-align:center;
+	border:1px solid #004578;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.4);
+	text-shadow:1px 1px 1px #000235;
+	background:#2C79E5 url("/images/phone-talk-up-blu.png") repeat-x top left;
+	border:1px solid #84AAED;
+}
+a.short_button span.number{
+	font-size:120%;	
+	font-weight:bold;
+}
+.a.short_button:active{
+	border:1px solid #1F59AB;
+}
